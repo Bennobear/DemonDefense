@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public float horror;
     [Header("Utility")]
     public Transform target;
+    public string enemyTag = "Enemy";
     public bool canAttackFlying;
     public bool canAttackInvisible;
     //miscellaneous effects like Splash Attack / Slow 
@@ -27,7 +28,7 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
