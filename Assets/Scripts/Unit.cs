@@ -14,19 +14,37 @@ public class Unit : MonoBehaviour
     public bool isFlying;
     public bool isInvisible;
     //miscellaneous effects
-    [Header("Versusmode")]
+    [Header("Hackermode")]
     public int cost;
+
+    //Movement
+    private Transform target;
+    private int waypointIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = Waypoints.waypoints[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+        Vector3 dir = target.position - transform.position;
+        transform.Translate(dir.normalized * movementSpeed * Time.deltaTime, Space.World);
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        {
+            GetNextWaypoint();
+        }
     }
 
-    
+    void GetNextWaypoint()
+    {
+        if (waypointIndex >= Waypoints.waypoints.Length - 1)
+        {
+            //Reached BASE DO SOMETHING
+            Destroy(gameObject);
+        }
+        waypointIndex++;
+        target = Waypoints.waypoints[waypointIndex];
+    }
 }
