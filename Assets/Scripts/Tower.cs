@@ -9,7 +9,9 @@ public class Tower : MonoBehaviour
     public int damage;
     public float range;
     public float attackSpeed;
+    private float fireCountdown = 0f;
     public float horror;
+    public float turnSpeed = 10;
     [Header("Utility")]
     public Transform target;
     public string enemyTag = "Enemy";
@@ -18,6 +20,9 @@ public class Tower : MonoBehaviour
     //miscellaneous effects like Splash Attack / Slow 
     [Header("Upgrades")]
     public List<Upgrades> upgrades;
+    [Header("Bullet")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,7 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void UpdateTarget()
     {
+        //Detect nearest Unit and Target it
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -44,6 +50,10 @@ public class Tower : MonoBehaviour
         {
             target = nearestEnemy.transform;
         }
+        else
+        {
+            target = null;
+        }
 
     }
 
@@ -52,6 +62,29 @@ public class Tower : MonoBehaviour
     {
         if (target == null)
             return;
+        //Rotate Turret to nearest Target
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 actualRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        transform.rotation = Quaternion.Euler (0f, 0f , actualRotation.z);
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / attackSpeed;
+        }
+
+        fireCountdown -= Time.deltaTime;
+
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null)
+            bullet.Seek(target);
     }
 
     void OnDrawGizmosSelected()

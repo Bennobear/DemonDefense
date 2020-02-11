@@ -43,6 +43,7 @@ public class Unit : MonoBehaviour
         {
             //Reached BASE DO SOMETHING
             Destroy(gameObject);
+            return;
         }
         waypointIndex++;
         target = Waypoints.waypoints[waypointIndex];
