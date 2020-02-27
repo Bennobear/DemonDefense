@@ -19,5 +19,23 @@ public class PlayerStats : MonoBehaviour
 
 		Rounds = 0;
 	}
+	public void TakeDamage(int amount)
+	{
+		Lives -= amount;
+	}
 
+	public void Heal(int amount)
+	{
+		Lives += amount;
+	}
+
+	public void KillReward(int amount)
+	{
+		Money += amount;
+	}
+
+	public void BuyTower(int amount)
+	{
+		Money -= amount;
+	}
 }

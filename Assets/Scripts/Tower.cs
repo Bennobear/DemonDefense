@@ -24,10 +24,16 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
+
+
+    TestOurTile buildManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        buildManager = TestOurTile.instance;
     }
 
     // Update is called once per frame
@@ -44,7 +50,7 @@ public class Tower : MonoBehaviour
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
-            } 
+            }
         }
         if (nearestEnemy != null && shortestDistance <= range)
         {
@@ -66,7 +72,7 @@ public class Tower : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 actualRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        transform.rotation = Quaternion.Euler (0f, 0f , actualRotation.z);
+        transform.rotation = Quaternion.Euler(0f, 0f, actualRotation.z);
 
         if (fireCountdown <= 0f)
         {
@@ -92,4 +98,38 @@ public class Tower : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+
+    public void UpgradeRange()
+    {
+        range += 0.5f;
+    }
+
+    public void UpgradeDamage()
+    {
+        damage += 5;
+    }
+
+    public void SellTower()
+    {
+        Destroy(gameObject);
+        buildManager.DeleteTower(this);
+        UpgradeOverlay.Hide_Static();
+    }
+
+    private void OnMouseDown()
+    {
+        UpgradeOverlay.Show_Static(this);
+    }
+
+    public float GetRange()
+    {
+        return range;
+    }
+
+    public int GetPrice()
+    {
+        return cost;
+    }
+
 }
