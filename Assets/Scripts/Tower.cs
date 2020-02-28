@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public float turnSpeed = 10;
     [Header("Utility")]
     public Transform target;
-    public string enemyTag = "Enemy";
+    private string enemyTag = "Enemy";
     public bool canAttackFlying;
     public bool canAttackInvisible;
     //miscellaneous effects like Splash Attack / Slow 

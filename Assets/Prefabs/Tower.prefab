@@ -134,7 +134,6 @@ MonoBehaviour:
   horror: 0
   turnSpeed: 10
   target: {fileID: 0}
-  enemyTag: Enemy
   canAttackFlying: 0
   canAttackInvisible: 0
   upgrades: []
