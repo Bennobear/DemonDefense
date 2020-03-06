@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public SceneFader sceneFader;
-    public int nextLevelIndex = 2;
+    public GameObject gameOverUI;
+    public static bool gameIsOver;
+    public GameObject completeLevelUI;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameIsOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameIsOver)
+            return;
+        if (PlayerStats.Lives <= 0)
+        {
+            EndGame();
+        }
     }
 
-    public void WinLevel()
+    void EndGame()
     {
-        Debug.Log("LEVEL WON");
-        PlayerPrefs.SetInt("levelReached", nextLevelIndex);
-        sceneFader.FadeTo("LevelSelection");
+        gameIsOver = true;
+        gameOverUI.SetActive(true);
     }
+
+    void WinLevel()
+    {
+        gameIsOver = true;
+        completeLevelUI.SetActive(true);
+    }
+
 }
