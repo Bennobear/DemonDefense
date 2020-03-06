@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -82,6 +83,13 @@ public class Tower : MonoBehaviour
 
         fireCountdown -= Time.deltaTime;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Shop.Hide_Static();
+            }
+        }
     }
 
     void Shoot()
@@ -120,6 +128,7 @@ public class Tower : MonoBehaviour
     private void OnMouseDown()
     {
         UpgradeOverlay.Show_Static(this);
+        Debug.Log("Show Static Upgrade Overlay");
     }
 
     public float GetRange()

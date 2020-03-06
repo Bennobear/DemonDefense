@@ -20,7 +20,14 @@ public class Unit : MonoBehaviour
     //Movement
     private Transform target;
     private int waypointIndex = 0;
+    private SpriteRenderer mySpriteRenderer;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
         target = Waypoints.waypoints[0];
@@ -34,6 +41,14 @@ public class Unit : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWaypoint();
+        }
+        if (target.position.x <= transform.position.x)
+        {
+            mySpriteRenderer.flipX = true;
+        }
+        else
+        {
+            mySpriteRenderer.flipX = false;
         }
     }
 

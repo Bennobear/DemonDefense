@@ -7,6 +7,6 @@ public class BtnClick : MonoBehaviour
 {
     public void BtnNewScene()
     {
-        SceneManager.LoadScene("Tower Defense");
+        
     }
 }
