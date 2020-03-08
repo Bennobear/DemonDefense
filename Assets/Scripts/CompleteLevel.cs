@@ -22,6 +22,13 @@ public class CompleteLevel : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerPrefs.SetInt("levelReached", nextLevelIndex);
+        if(PlayerPrefs.GetInt("levelReached") >= nextLevelIndex)
+        {
+            Debug.Log("Level Schon geschafft!");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("levelReached", nextLevelIndex);
+        }
     }
 }

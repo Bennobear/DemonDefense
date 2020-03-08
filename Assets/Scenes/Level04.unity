@@ -851,8 +851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 1547942276}
-  nextLevel: Level02
-  nextLevelIndex: 2
+  nextLevel: Level05
+  nextLevelIndex: 5
 --- !u!1 &191137246
 GameObject:
   m_ObjectHideFlags: 0

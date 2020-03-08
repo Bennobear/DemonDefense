@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level03.unity
     guid: ede590512f0d4114cbbf94fbbe8f7f8f
   - enabled: 1
+    path: Assets/Scenes/Level04.unity
+    guid: cee0bd2c38900714db39bfff6e92cd50
+  - enabled: 1
     path: Assets/Scenes/Tower Defense.unity
     guid: e460ac45a8fc2814f9bcf09248bd612a
   m_configObjects: {}
