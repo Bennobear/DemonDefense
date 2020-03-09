@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 1
   life: 0
-  damage: 0
+  damage: 5
   reward: 0
   holy: 0
   isFlying: 0
