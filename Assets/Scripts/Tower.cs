@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
     public float turnSpeed = 10;
     [Header("Utility")]
     public Transform target;
+    private Unit targetObj;
     private string enemyTag = "Enemy";
     public bool canAttackFlying;
     public bool canAttackInvisible;
@@ -56,6 +57,7 @@ public class Tower : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            
         }
         else
         {
@@ -96,7 +98,7 @@ public class Tower : MonoBehaviour
     {
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
-
+        
         if (bullet != null)
             bullet.Seek(target);
     }

@@ -57,11 +57,16 @@ public class Unit : MonoBehaviour
         if (waypointIndex >= Waypoints.waypoints.Length - 1)
         {
             //Reached BASE DO SOMETHING
-            PlayerStats.Lives -= 1;
+            PlayerStats.life -= (int)damage;
             Destroy(gameObject);
             return;
         }
         waypointIndex++;
         target = Waypoints.waypoints[waypointIndex];
+    }
+
+    public void Test()
+    {
+        Debug.Log("Test");
     }
 }

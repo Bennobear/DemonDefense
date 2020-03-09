@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameIsOver)
             return;
-        if (PlayerStats.Lives <= 0)
+        if (PlayerStats.life <= 0)
         {
             EndGame();
         }

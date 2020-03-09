@@ -33,6 +33,7 @@ public class TestOurTile : MonoBehaviour
 	private void Update()
 	{
 		var tiles = GameTiles.instance.tiles;
+		
 		if (Input.GetMouseButtonDown(0))
 		{
 			if (EventSystem.current.IsPointerOverGameObject())
@@ -74,11 +75,12 @@ public class TestOurTile : MonoBehaviour
 						Debug.Log("Show Shop");
 					}
 				}
+				else
+				{
+					Shop.Hide_Static();
+					UpgradeOverlay.Hide_Static();
+				}
 			}
-		}
-		else
-		{
-
 		}
 	}
 	public void SetTurretToBuild(GameObject _turret)
@@ -97,15 +99,26 @@ public class TestOurTile : MonoBehaviour
 		var tiles = GameTiles.instance.tiles;
 		if (tiles.TryGetValue(new Vector3Int(Mathf.FloorToInt(tower.transform.position.x), Mathf.FloorToInt(tower.transform.position.y), 0), out _tile))
 		{
-			print("Tile " + _tile.Name + " Gelöscht!");
+			print("Tower " + _tile.Name + " sold!");
 			_tile.Blocked = false;
+			StartCoroutine(Wait());
+			//CALL POPUP to show it
 		}
 	}
 
 	public void BuildTower()
 	{
 		Instantiate(selectedTower, towerPos, Quaternion.identity);
+		Tower t = selectedTower.GetComponent<Tower>();
+		PlayerStats.money -= t.GetPrice();
 		_tile.Blocked = true;
+		StartCoroutine(Wait());
+		//CALL POPUP to show it
+	}
+
+	IEnumerator Wait()
+	{
+		yield return new WaitForSeconds(.1f);
 		Shop.Hide_Static();
 	}
 }
