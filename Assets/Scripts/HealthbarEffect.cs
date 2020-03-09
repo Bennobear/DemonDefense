@@ -11,27 +11,28 @@ public class HealthbarEffect : MonoBehaviour {
 
     private Image barImage;
     private Image damagedBarImage;
-    private HealthbarSystem healthSystem;
+    public HealthbarSystem healthSystem;
     private float damagedHealthShrinkTimer;
+    public Unit unit;
 
     private void Awake()
     {
         barImage = transform.Find("healthbar").GetComponent<Image>();
         damagedBarImage = transform.Find("healthbarshrink").GetComponent<Image>();
 
+
     }
 
     private void Start()
     {
-        healthSystem = new HealthbarSystem(100);
+        healthSystem = new HealthbarSystem(unit.life);
         SetHealth(healthSystem.GetHealthNormalized());
         damagedBarImage.fillAmount = barImage.fillAmount;
 
         healthSystem.OnDamage += HealthSystem_OnDamage;
         healthSystem.OnHeal += HealthSystem_OnHeal;
-
-        CMDebug.ButtonUI(new Vector2(-100, -50), "Damage", () => healthSystem.damageHealth(10));
-        CMDebug.ButtonUI(new Vector2(+100, -50), "Heal", () => healthSystem.healHealth(10));
+        // CMDebug.ButtonUI(new Vector2(-100, -50), "Damage", () => healthSystem.damageHealth(10));
+        // CMDebug.ButtonUI(new Vector2(+100, -50), "Heal", () => healthSystem.healHealth(10));
 
 
     }
@@ -49,21 +50,26 @@ public class HealthbarEffect : MonoBehaviour {
         }
     }
 
-    private void HealthSystem_OnDamage(object sender, System.EventArgs e)
+    public void HealthSystem_OnDamage(object sender, System.EventArgs e)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
         SetHealth(healthSystem.GetHealthNormalized());
     }
 
-    private void HealthSystem_OnHeal(object sender, System.EventArgs e)
+    public void HealthSystem_OnHeal(object sender, System.EventArgs e)
     {
         SetHealth(healthSystem.GetHealthNormalized());
         damagedBarImage.fillAmount = barImage.fillAmount;
     }
 
- private void SetHealth(float healthNormalized)
+ public void SetHealth(float healthNormalized)
     {
         barImage.fillAmount = healthNormalized;
+    }
+
+    public void hitDamage(int damage) 
+    {
+        healthSystem.damageHealth(damage);
     }
 
 }

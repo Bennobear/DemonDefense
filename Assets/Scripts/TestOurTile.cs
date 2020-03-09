@@ -66,7 +66,7 @@ public class TestOurTile : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("No Turret Selected");
+			
 		}
 	}
 	public void SetTurretToBuild(GameObject _turret)

@@ -4,19 +4,22 @@ public class Bullet : MonoBehaviour
 {
 
 	private Transform target;
+	private int damage;
 
 	public float speed = 70f;
 	public GameObject impactEffect;
+	
 
-	public void Seek(Transform _target)
+
+	public void Seek(Transform _target, int _damage)
 	{
 		target = _target;
+		damage = _damage;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-
 		if (target == null)
 		{
 			Destroy(gameObject);
@@ -40,8 +43,11 @@ public class Bullet : MonoBehaviour
 	{
 		GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
 		Destroy(effectIns, 2f);
-
-		Destroy(target.gameObject);
+		Unit e = target.GetComponent<Unit>();
+		e.getDamage(damage);
+		bool critHit = Random.Range(0, 100) < 30;
+		DamagePopUp.Create(target.localPosition, damage, false);
 		Destroy(gameObject);
+
 	}
 }

@@ -6,8 +6,8 @@ public class Unit : MonoBehaviour
 {
     [Header("Basics")]
     public float movementSpeed;
-    public float life;
-    public float damage;
+    public int life;
+    public int damage;
     public int reward;
     [Header("Utility")]
     public float holy;
@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
     //miscellaneous effects
     [Header("Hackermode")]
     public int cost;
+    public HealthbarEffect healthUnit;
 
     //Movement
     private Transform target;
@@ -29,11 +30,17 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * movementSpeed * Time.deltaTime, Space.World);
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWaypoint();
+        }
+
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -47,5 +54,11 @@ public class Unit : MonoBehaviour
         }
         waypointIndex++;
         target = Waypoints.waypoints[waypointIndex];
+    }
+
+    public void getDamage(int _damage)
+    {
+        life -= _damage;
+        healthUnit.hitDamage(_damage);
     }
 }

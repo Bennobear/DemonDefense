@@ -7,6 +7,7 @@ public class HealthbarSystem : MonoBehaviour
 {
     public event EventHandler OnDamage;
     public event EventHandler OnHeal;
+    
 
     private int healthAmount;
     private int healthAmountMax;
