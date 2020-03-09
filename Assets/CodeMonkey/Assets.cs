@@ -33,6 +33,7 @@ namespace CodeMonkey {
             }
         }
 
+        public Transform pfDamagePopUp;
 
         // All references
 
@@ -41,4 +42,6 @@ namespace CodeMonkey {
 
     }
 
+
 }
+

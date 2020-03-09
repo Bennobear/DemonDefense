@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 50
-  damage: 0
+  damage: 50
   range: 3
   attackSpeed: 1
   horror: 0
