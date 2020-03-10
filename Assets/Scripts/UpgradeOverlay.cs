@@ -16,7 +16,6 @@ public class UpgradeOverlay : MonoBehaviour
 
         transform.Find("UpgradeRange").GetComponent<Button_Sprite>().ClickFunc = UpgradeRange;
         transform.Find("UpgradeDamage").GetComponent<Button_Sprite>().ClickFunc = UpgradeDamge;
-        transform.Find("CloseOverlay").GetComponent<Button_Sprite>().ClickFunc = Hide;
         transform.Find("SellTower").GetComponent<Button_Sprite>().ClickFunc = SellTower;
 
         Hide();
@@ -63,5 +62,10 @@ public class UpgradeOverlay : MonoBehaviour
     private void RefreshRangeVisual()
     {
         transform.Find("Range").localScale = Vector3.one * tower.GetRange() * 2f;
+    }
+
+    public static bool isActive()
+    {
+        return Instance.gameObject.activeSelf;
     }
 }

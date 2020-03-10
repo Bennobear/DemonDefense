@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Tower : MonoBehaviour
     public float turnSpeed = 10;
     [Header("Utility")]
     public Transform target;
-    public string enemyTag = "Enemy";
+    private Unit targetObj;
+    private string enemyTag = "Enemy";
     public bool canAttackFlying;
     public bool canAttackInvisible;
     //miscellaneous effects like Splash Attack / Slow 
@@ -55,6 +57,7 @@ public class Tower : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            
         }
         else
         {
@@ -82,13 +85,20 @@ public class Tower : MonoBehaviour
 
         fireCountdown -= Time.deltaTime;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Shop.Hide_Static();
+            }
+        }
     }
 
     void Shoot()
     {
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
-
+        
         if (bullet != null)
             bullet.Seek(target, damage);
     }
@@ -120,6 +130,7 @@ public class Tower : MonoBehaviour
     private void OnMouseDown()
     {
         UpgradeOverlay.Show_Static(this);
+        Debug.Log("Show Static Upgrade Overlay");
     }
 
     public float GetRange()

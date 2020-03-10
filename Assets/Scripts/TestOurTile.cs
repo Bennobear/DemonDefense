@@ -8,6 +8,7 @@ public class TestOurTile : MonoBehaviour
 {
 	public static TestOurTile instance;
 	private PlayerStats playerStats;
+	public Vector3 towerPos;
 
 	private WorldTile _tile;
 	// TESTING
@@ -15,6 +16,7 @@ public class TestOurTile : MonoBehaviour
 	public GameObject secondTower;
 	public GameObject thirdTower;
 	private GameObject selectedTower;
+	private bool buildMode;
 	Shop shop;
 
 	private void Awake()
@@ -31,47 +33,60 @@ public class TestOurTile : MonoBehaviour
 	private void Update()
 	{
 		var tiles = GameTiles.instance.tiles;
+		
 		if (Input.GetMouseButtonDown(0))
 		{
 			if (EventSystem.current.IsPointerOverGameObject())
 			{
 				Debug.Log("Clicked on the UI");
 			}
-			else if (selectedTower != null)
+			else
 			{
 				Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				var worldPoint = new Vector3Int(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y), 0);
-
-				 // This is our Dictionary of tiles
-													  // Playing Tower and Color ground
-
+				// This is our Dictionary of tiles
 				if (tiles.TryGetValue(worldPoint, out _tile))
 				{
-					print("Tile " + _tile.Name + " costs: " + _tile.Cost);
+					print("Tile " + _tile.Name);
 					_tile.TilemapMember.SetTileFlags(_tile.LocalPlace, TileFlags.None);
-					_tile.TilemapMember.SetColor(_tile.LocalPlace, Color.green);
-					Vector3 towerPos = _tile.WorldLocation;
-					towerPos.z = -1;
-					towerPos.x = towerPos.x + 0.5f;
-					towerPos.y = towerPos.y + 0.5f;
 					if (_tile.Blocked)
 					{
+						Shop.Hide_Static();
 						print("Tile already used");
 					}
+					else if (Shop.isActive())
+					{
+						Shop.Hide_Static();
+						Debug.Log("Shop was already active");
+					}
+					else if (UpgradeOverlay.isActive())
+					{
+						Shop.Hide_Static();
+						UpgradeOverlay.Hide_Static();
+						Debug.Log("Upgrade Overlay is active");
+					}
 					else
-						Instantiate(selectedTower, towerPos, Quaternion.identity);
-					_tile.Blocked = true;
+					{
+						towerPos = _tile.WorldLocation;
+						towerPos.z = -1;
+						towerPos.x = towerPos.x + 0.5f;
+						towerPos.y = towerPos.y + 0.5f;
+						Shop.Show_Static(towerPos);
+						Debug.Log("Show Shop");
+					}
+				}
+				else
+				{
+					Shop.Hide_Static();
+					UpgradeOverlay.Hide_Static();
 				}
 			}
-		}
-		else
-		{
-			
 		}
 	}
 	public void SetTurretToBuild(GameObject _turret)
 	{
 		selectedTower = _turret;
+		BuildTower();
 	}
 
 	public void GetTurretToBuild(GameObject _turret)
@@ -82,15 +97,28 @@ public class TestOurTile : MonoBehaviour
 	public void DeleteTower(Tower tower)
 	{
 		var tiles = GameTiles.instance.tiles;
-		if (EventSystem.current.IsPointerOverGameObject())
-			{
-				Debug.Log("Clicked on the UI");
-			}
 		if (tiles.TryGetValue(new Vector3Int(Mathf.FloorToInt(tower.transform.position.x), Mathf.FloorToInt(tower.transform.position.y), 0), out _tile))
 		{
-			print("Tile " + _tile.Name + " Gelöscht!");
+			print("Tower " + _tile.Name + " sold!");
 			_tile.Blocked = false;
-			_tile.TilemapMember.SetColor(_tile.LocalPlace, Color.clear);
+			StartCoroutine(Wait());
+			//CALL POPUP to show it
 		}
+	}
+
+	public void BuildTower()
+	{
+		Instantiate(selectedTower, towerPos, Quaternion.identity);
+		Tower t = selectedTower.GetComponent<Tower>();
+		PlayerStats.money -= t.GetPrice();
+		_tile.Blocked = true;
+		StartCoroutine(Wait());
+		//CALL POPUP to show it
+	}
+
+	IEnumerator Wait()
+	{
+		yield return new WaitForSeconds(.1f);
+		Shop.Hide_Static();
 	}
 }
