@@ -44,9 +44,18 @@ public class Bullet : MonoBehaviour
 		GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
 		Destroy(effectIns, 2f);
 		Unit e = target.GetComponent<Unit>();
-		e.getDamage(damage);
 		bool critHit = Random.Range(0, 100) < 30;
 		DamagePopUp.Create(target.localPosition, damage, critHit);
+		
+			if (!critHit)
+			{
+				e.getDamage(damage);
+			}
+			else
+			{
+				e.getDamage(damage * 2 );
+			}
+		
 		Destroy(gameObject);
 
 	}
