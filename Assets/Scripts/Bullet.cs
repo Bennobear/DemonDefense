@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
 		Unit e = target.GetComponent<Unit>();
 		e.getDamage(damage);
 		bool critHit = Random.Range(0, 100) < 30;
-		DamagePopUp.Create(target.localPosition, damage, false);
+		DamagePopUp.Create(target.localPosition, damage, critHit);
 		Destroy(gameObject);
 
 	}
