@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class manages the healthbars current state and damage/heal changes
 public class HealthbarSystem : MonoBehaviour
 {
     public event EventHandler OnDamage;

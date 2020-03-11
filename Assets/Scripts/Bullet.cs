@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// This class manages the behaviour of the attack actions of "towers"
 public class Bullet : MonoBehaviour
 {
 
@@ -10,7 +11,7 @@ public class Bullet : MonoBehaviour
 	public GameObject impactEffect;
 	
 
-
+	// Gets the position of the target
 	public void Seek(Transform _target, int _damage)
 	{
 		target = _target;
@@ -39,6 +40,7 @@ public class Bullet : MonoBehaviour
 
 	}
 
+	// Manages the behaviour if the bullet is hitting the target
 	void HitTarget()
 	{
 		GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);

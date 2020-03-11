@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using CodeMonkey.Utils;
 using CodeMonkey;
 
+// This class manages the visual changes of the implemented healthsystem
 public class HealthbarEffect : MonoBehaviour {
 
     private const float DAMAGED_HEALTH_SHRINK_TIMER_MAX = .6f;
@@ -15,6 +16,7 @@ public class HealthbarEffect : MonoBehaviour {
     private float damagedHealthShrinkTimer;
     public Unit unit;
 
+    // This will load the custom healthbars
     private void Awake()
     {
         barImage = transform.Find("healthbar").GetComponent<Image>();
@@ -23,6 +25,7 @@ public class HealthbarEffect : MonoBehaviour {
 
     }
 
+    // Manages the fillamount of the healthbar
     private void Start()
     {
         healthSystem = new HealthbarSystem(unit.life);
@@ -31,12 +34,11 @@ public class HealthbarEffect : MonoBehaviour {
 
         healthSystem.OnDamage += HealthSystem_OnDamage;
         healthSystem.OnHeal += HealthSystem_OnHeal;
-        // CMDebug.ButtonUI(new Vector2(-100, -50), "Damage", () => healthSystem.damageHealth(10));
-        // CMDebug.ButtonUI(new Vector2(+100, -50), "Heal", () => healthSystem.healHealth(10));
 
 
     }
 
+    // Manages the appearance of the healthbar after taking damage or recieving a heal
     private void Update()
     {
         damagedHealthShrinkTimer -= Time.deltaTime;
@@ -50,12 +52,14 @@ public class HealthbarEffect : MonoBehaviour {
         }
     }
 
+    // Manages the Damage
     public void HealthSystem_OnDamage(object sender, System.EventArgs e)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
         SetHealth(healthSystem.GetHealthNormalized());
     }
 
+    // Manages the Heal
     public void HealthSystem_OnHeal(object sender, System.EventArgs e)
     {
         SetHealth(healthSystem.GetHealthNormalized());
@@ -67,6 +71,7 @@ public class HealthbarEffect : MonoBehaviour {
         barImage.fillAmount = healthNormalized;
     }
 
+    // This function transfers the damage into the Unit Class
     public void hitDamage(int damage) 
     {
         healthSystem.damageHealth(damage);
