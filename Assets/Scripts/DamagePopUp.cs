@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using CodeMonkey.Utils;
 
+// This class manages shown damage values and there behaviour
 public class DamagePopUp : MonoBehaviour {
 
     // Creating a Pop-Up with damage values
@@ -27,12 +28,13 @@ public class DamagePopUp : MonoBehaviour {
     private int critDamageAmount;
     private Vector3 moveVector;
 
-
+    // Loads the text-component from the object
     private void Awake()
     {
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
+    // Manages the appearance of the shown damage/heal values
     public void SetUp(int damageAmount, bool critHit)
     {
         if (!critHit)
@@ -57,6 +59,8 @@ public class DamagePopUp : MonoBehaviour {
 
         textMesh.SetText(damageAmount.ToString());
     }
+
+    // Manages the behaviour of show damage/heal values
     private void Update()
     {
         if(disappearTimer > DISAPPEAR_TIMER_MAX *.5f)
