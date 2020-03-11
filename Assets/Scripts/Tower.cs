@@ -12,7 +12,7 @@ public class Tower : MonoBehaviour
     public float attackSpeed;
     private float fireCountdown = 0f;
     public float horror;
-    public float turnSpeed = 10;
+    public float turnSpeed = 0;
     [Header("Utility")]
     public Transform target;
     private Unit targetObj;
