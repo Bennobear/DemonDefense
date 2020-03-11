@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 695ae6745487337448455d6af1117226, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd3f63073dab6094a8abf7dadbabc394, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   range: 3
   attackSpeed: 1
   horror: 0
-  turnSpeed: 10
+  turnSpeed: 0
   target: {fileID: 0}
   canAttackFlying: 0
   canAttackInvisible: 0

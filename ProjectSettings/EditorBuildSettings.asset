@@ -14,15 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level01.unity
     guid: c362b585a1f80494db755191bcc73e94
-  - enabled: 1
-    path: Assets/Scenes/Level02.unity
-    guid: 2e300788abe912e47991943760779454
-  - enabled: 1
-    path: Assets/Scenes/Level03.unity
-    guid: ede590512f0d4114cbbf94fbbe8f7f8f
-  - enabled: 1
-    path: Assets/Scenes/Level04.unity
-    guid: cee0bd2c38900714db39bfff6e92cd50
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Tower Defense.unity
     guid: e460ac45a8fc2814f9bcf09248bd612a
