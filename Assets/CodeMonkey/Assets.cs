@@ -34,6 +34,7 @@ namespace CodeMonkey {
         }
 
         public Transform pfDamagePopUp;
+        public Transform moneyPopup;
 
         // All references
 

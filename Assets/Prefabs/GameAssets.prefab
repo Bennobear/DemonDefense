@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda7ff5f6e8175c4da119ea9ed256f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamagePopUp: {fileID: 4299154253175800761, guid: f17aae0e89906894d8e02f0cb505e4ce,
+  pfDamagePopUp: {fileID: 4299154253175800761, guid: f17aae0e89906894d8e02f0cb505e4ce,
+    type: 3}
+  moneyPopup: {fileID: 4299154253175800761, guid: f4883100903e82349a4ca4f8a0dbf714,
     type: 3}
   s_White: {fileID: 0}
   m_White: {fileID: 0}

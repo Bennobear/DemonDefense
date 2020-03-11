@@ -17,6 +17,17 @@ public class DamagePopUp : MonoBehaviour {
         return damagePopUp;
     }
 
+    public static DamagePopUp CreateMoney(Vector3 position, int amount)
+    {
+        Transform damagePopUptransform = Instantiate(CodeMonkey.Assets.i.moneyPopup, position, Quaternion.identity);
+
+        DamagePopUp damagePopUp = damagePopUptransform.GetComponent<DamagePopUp>();
+        damagePopUp.SetUp(amount, false);
+        Debug.Log("MoneyPopUp");
+        return damagePopUp;
+    }
+
+
     private static int sortingOrder;
 
     private const float DISAPPEAR_TIMER_MAX = .5f;

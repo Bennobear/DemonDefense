@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
 	public Text lifeText;
 	public Text moneyText;
-
+	public Transform moneyPos;
 	public static int money;
 	public int startMoney = 400;
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4299154253175800765}
   - component: {fileID: 2169760887955550838}
   m_Layer: 0
-  m_Name: pfDamagePopUp
+  m_Name: MoneyPopUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279556837
-  m_fontColor: {r: 0.8962264, g: 0.8554215, b: 0.080322154, a: 1}
+    rgba: 4288661101
+  m_fontColor: {r: 0.427451, g: 0.77647066, b: 0.62352943, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -187,7 +187,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 1
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

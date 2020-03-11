@@ -21,7 +21,13 @@ public class Unit : MonoBehaviour
     //Movement
     private Transform target;
     private int waypointIndex = 0;
+    private SpriteRenderer mySpriteRenderer;
     // Start is called before the first frame update
+    private void Awake()
+    {
+            mySpriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
         target = Waypoints.waypoints[0];
@@ -42,12 +48,22 @@ public class Unit : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (target.position.x <= transform.position.x)
+        {
+            mySpriteRenderer.flipX = true;
+        }
+        else
+        {
+            mySpriteRenderer.flipX = false;
+        }
     }
 
     void GetNextWaypoint()
     {
         if (waypointIndex >= Waypoints.waypoints.Length - 1)
         {
+            PlayerStats.life -= damage;
             //Reached BASE DO SOMETHING
             Destroy(gameObject);
             return;

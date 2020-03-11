@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1443067758}
   m_HandleRect: {fileID: 1443067757}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999998
   m_Size: 0.734375
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3601,6 +3601,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3360957164421394742, guid: 2d61cc5f74a963142a3f828791999fe2,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360957164421394743, guid: 2d61cc5f74a963142a3f828791999fe2,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360957164421394743, guid: 2d61cc5f74a963142a3f828791999fe2,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 296553941}
     - target: {fileID: 3360957164812298195, guid: 2d61cc5f74a963142a3f828791999fe2,
         type: 3}
       propertyPath: m_IsActive
@@ -3610,6 +3625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360957164812298204, guid: 2d61cc5f74a963142a3f828791999fe2,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d61cc5f74a963142a3f828791999fe2, type: 3}

@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class TestOurTile : MonoBehaviour
 {
 	public static TestOurTile instance;
-	private PlayerStats playerStats;
+	public PlayerStats playerStats;
 	public Vector3 towerPos;
 
 	private WorldTile _tile;
@@ -111,9 +111,9 @@ public class TestOurTile : MonoBehaviour
 		Instantiate(selectedTower, towerPos, Quaternion.identity);
 		Tower t = selectedTower.GetComponent<Tower>();
 		PlayerStats.money -= t.GetPrice();
+		DamagePopUp.CreateMoney(playerStats.moneyPos.position,t.GetPrice());
 		_tile.Blocked = true;
 		StartCoroutine(Wait());
-		//CALL POPUP to show it
 	}
 
 	IEnumerator Wait()
