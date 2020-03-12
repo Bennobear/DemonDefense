@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6154588278172742952}
   m_LocalRotation: {x: 0.0005328768, y: 0.0022763947, z: -0.013976036, w: 0.9998996}
-  m_LocalPosition: {x: -0.281, y: -0.531, z: -0.999}
+  m_LocalPosition: {x: -0.063, y: 0.074, z: -0.999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8384407551358084675}
@@ -137,7 +137,7 @@ MonoBehaviour:
   canAttackFlying: 0
   canAttackInvisible: 0
   upgrades: []
-  bulletPrefab: {fileID: 9128914919229375021, guid: 99836d23445d05f45893d056edebfa3f,
+  bulletPrefab: {fileID: 4356336694101422542, guid: 3012dca6da05c93468d9634137bc80fd,
     type: 3}
   firePoint: {fileID: 6154588278172742953}
 --- !u!95 &91068477498615395

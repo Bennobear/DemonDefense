@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+//Tile Array for the complete Scene 
 
 public class GameTiles : MonoBehaviour
 {

@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+//Class containing all variables and methods of a tower
 
 public class Tower : MonoBehaviour
 {
@@ -25,23 +25,17 @@ public class Tower : MonoBehaviour
     [Header("Bullet")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-
-
-
     TestOurTile buildManager;
 
-
-    // Start is called before the first frame update
+    //Update target every .5 seconds and get our buildManager Singleton Instance 
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         buildManager = TestOurTile.instance;
     }
-
-    // Update is called once per frame
+    //Detect nearest Unit and Target it
     void UpdateTarget()
     {
-        //Detect nearest Unit and Target it
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -56,17 +50,17 @@ public class Tower : MonoBehaviour
         }
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
-            
+            target = nearestEnemy.transform; 
         }
         else
         {
             target = null;
         }
-
     }
 
-    // Update is called once per frame
+    //No target = repeat 
+    //Roate the turret towards the target (not necessary as for now so speed is 0) 
+    //Fire a the target with a set countdown 
     void Update()
     {
         if (target == null)
@@ -93,7 +87,7 @@ public class Tower : MonoBehaviour
             }
         }
     }
-
+    //Create a bullet and give it all the information it needs to find and hit the target
     void Shoot()
     {
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -102,45 +96,43 @@ public class Tower : MonoBehaviour
         if (bullet != null)
             bullet.Seek(target, damage);
     }
-
+    //DEBUG PURPOSE
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-
-
+    //Upgrade the range of a tower
     public void UpgradeRange()
     {
         range += 0.5f;
     }
-
+    //Upgrade the damage of a tower
     public void UpgradeDamage()
     {
         damage += 5;
     }
-
+    //Sell a tower 
     public void SellTower()
     {
         Destroy(gameObject);
         buildManager.DeleteTower(this);
         UpgradeOverlay.Hide_Static();
     }
-
+    //Open the Overlay when clicking on a tower
     private void OnMouseDown()
     {
         UpgradeOverlay.Show_Static(this);
         Debug.Log("Show Static Upgrade Overlay");
     }
-
+    //Return the range of a tower
     public float GetRange()
     {
         return range;
     }
-
+    //Return the cost of a tower
     public int GetPrice()
     {
         return cost;
     }
-
 }

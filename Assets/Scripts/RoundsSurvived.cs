@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+//Simple class to make a nie looking survived round counter when you lose or win 
 
 public class RoundsSurvived : MonoBehaviour
 {

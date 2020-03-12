@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-
 // This class manages the behaviour of the attack actions of "towers"
+
 public class Bullet : MonoBehaviour
 {
 
@@ -29,15 +29,16 @@ public class Bullet : MonoBehaviour
 
 		Vector3 dir = target.position - transform.position;
 		float distanceThisFrame = speed * Time.deltaTime;
+		Vector2 rotateDir = target.transform.position - transform.position;
+		float angle = Mathf.Atan2(rotateDir.y, rotateDir.x) * Mathf.Rad2Deg;
 
 		if (dir.magnitude <= distanceThisFrame)
 		{
 			HitTarget();
 			return;
 		}
-
 		transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
 	// Manages the behaviour if the bullet is hitting the target

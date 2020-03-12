@@ -118,12 +118,13 @@ MonoBehaviour:
   movementSpeed: 1
   life: 100
   damage: 5
-  reward: 0
+  reward: 9
   holy: 0
   isFlying: 0
   isInvisible: 0
   cost: 0
   healthUnit: {fileID: 157354792}
+  lifeAnimator: {fileID: 0}
 --- !u!1001 &7683178519747477044
 PrefabInstance:
   m_ObjectHideFlags: 0

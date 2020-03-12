@@ -1,11 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class TestOurTile : MonoBehaviour
 {
+	public Animator money;
+
 	public static TestOurTile instance;
 	public PlayerStats playerStats;
 	public Vector3 towerPos;
@@ -108,12 +109,19 @@ public class TestOurTile : MonoBehaviour
 
 	public void BuildTower()
 	{
-		Instantiate(selectedTower, towerPos, Quaternion.identity);
 		Tower t = selectedTower.GetComponent<Tower>();
-		PlayerStats.money -= t.GetPrice();
-		DamagePopUp.CreateMoney(playerStats.moneyPos.position,t.GetPrice());
-		_tile.Blocked = true;
-		StartCoroutine(Wait());
+		if (PlayerStats.money >= t.GetPrice())
+		{
+			Instantiate(selectedTower, towerPos, Quaternion.identity);
+			PlayerStats.money -= t.GetPrice();
+			DamagePopUp.CreateMoney(playerStats.moneyPos.position, t.GetPrice());
+			_tile.Blocked = true;
+			StartCoroutine(Wait());
+		}
+		else
+		{
+			money.SetTrigger("itHappened");
+		}
 	}
 
 	IEnumerator Wait()

@@ -23,7 +23,7 @@ public class DamagePopUp : MonoBehaviour {
         Transform damagePopUptransform = Instantiate(CodeMonkey.Assets.i.moneyPopup, position, Quaternion.identity);
 
         DamagePopUp damagePopUp = damagePopUptransform.GetComponent<DamagePopUp>();
-        damagePopUp.SetUp(amount, false);
+        damagePopUp.SetUp(-amount, false);
         Debug.Log("MoneyPopUp");
         return damagePopUp;
     }

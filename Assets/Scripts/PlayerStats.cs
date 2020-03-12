@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+//Class controlling the money and life of the player 
 
 public class PlayerStats : MonoBehaviour
 {

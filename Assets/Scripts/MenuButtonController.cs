@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+//Keyboard Control - not necessary 
 public class MenuButtonController : MonoBehaviour {
 
 	// Use this for initialization

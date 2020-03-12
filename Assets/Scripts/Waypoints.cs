@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+//This class creates a static array containing our waypoints 
 
 public class Waypoints : MonoBehaviour
 {
     public static Transform[] waypoints;
-
     void Awake()
     {
         waypoints = new Transform[transform.childCount];

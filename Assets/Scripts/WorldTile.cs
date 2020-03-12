@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
+//This class contains the information saved in each tile we lay down on the tilemap
 
 public class WorldTile
 {
@@ -14,13 +13,6 @@ public class WorldTile
     public Tilemap TilemapMember { get; set; }
 
     public string Name { get; set; }
-
-    // Below is needed for Breadth First Searching
-    public bool IsExplored { get; set; }
-
-    public WorldTile ExploredFrom { get; set; }
-
-    public int Cost { get; set; }
-
+    //Used to detect if a tower is placed on this tile.
     public bool Blocked { get; set; }
 }

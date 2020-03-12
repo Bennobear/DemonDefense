@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//GameManager handles GameStates
 
 public class GameManager : MonoBehaviour
 {
@@ -9,17 +9,13 @@ public class GameManager : MonoBehaviour
     public static bool gameIsOver;
     public GameObject completeLevelUI;
     public GameObject pauseUI;
-
     public SceneFader fader;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         gameIsOver = false;
     }
-
-    // Update is called once per frame
+    //Lose game when life reaches <=0
     void Update()
     {
         if (gameIsOver)
@@ -28,32 +24,29 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
-        
     }
-
+    //Set game is over to prevent some methods to repeat / activate lose screen
     public void EndGame()
     {
         gameIsOver = true;
         gameOverUI.SetActive(true);
     }
-
+    //Set game is over to prevent some methods to repeat / activate win screen
     public void WinLevel()
     {
         gameIsOver = true;
         completeLevelUI.SetActive(true);
     }
-
+    //Speedup for a set amount of time (IMPLEMENT TOGGLE HERE)
     public void Speedup()
     {
         Time.timeScale = 5f;
         StartCoroutine(Wait());
     }
-
     public void PauseGame()
     {
         Toggle();
     }
-
     public void RetryGame()
     {
         Toggle();
@@ -65,7 +58,7 @@ public class GameManager : MonoBehaviour
         Toggle();
         fader.FadeTo("MainMenu");
     }
-
+    //Pause menu switch state
     public void Toggle()
     {
         pauseUI.SetActive(!pauseUI.activeSelf);

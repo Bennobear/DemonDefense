@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+//Contains update data - not used ATM
 
     [System.Serializable]
     public class Upgrades
