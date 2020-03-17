@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 //Class containing all variables and methods of a tower
 
 public class Tower : MonoBehaviour
@@ -13,6 +14,7 @@ public class Tower : MonoBehaviour
     private float fireCountdown = 0f;
     public float horror;
     public float turnSpeed = 0;
+    public string type;
     [Header("Utility")]
     public Transform target;
     private Unit targetObj;
@@ -106,11 +108,13 @@ public class Tower : MonoBehaviour
     public void UpgradeRange()
     {
         range += 0.5f;
+        ShowInfo();
     }
     //Upgrade the damage of a tower
     public void UpgradeDamage()
     {
         damage += 5;
+        ShowInfo();
     }
     //Sell a tower 
     public void SellTower()
@@ -123,7 +127,9 @@ public class Tower : MonoBehaviour
     private void OnMouseDown()
     {
         UpgradeOverlay.Show_Static(this);
-        Debug.Log("Show Static Upgrade Overlay");
+        ShowInfo();
+        Tooltip.Show_Static();
+        //Debug.Log("Show Static Upgrade Overlay");
     }
     //Return the range of a tower
     public float GetRange()
@@ -134,5 +140,26 @@ public class Tower : MonoBehaviour
     public int GetPrice()
     {
         return cost;
+    }
+
+    public void ShowInfo()
+    {
+        string tooltip = string.Empty;
+
+        switch (type)
+        {
+            case "Arrow":
+                tooltip = string.Format("<color=#17D4FC><size=20><b>Energy Arrow</b></size></color>\nDamage: {0}\nRange: {1}\n Shoots electric arrows", damage, range);
+                break;
+
+            case "Fireball":
+                tooltip = string.Format("<color=#FF0000><size=20><b>Fireball</b></size></color>\nDamage: {0}\nRange: {1}\n Shoots slow fireballs", damage, range);
+                break;
+
+            case "Cloud":
+                tooltip = string.Format("<color=#E5CCC9><size=20><b>Dust Cloud</b></size></color>\n Shots arrows that explodes into a cloud", damage, range);
+                break;
+        }
+        Tooltip.setText_Static(tooltip);
     }
 }

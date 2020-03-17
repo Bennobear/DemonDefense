@@ -12,7 +12,7 @@ public class HealthbarSystem : MonoBehaviour
 
     private int healthAmount;
     private int healthAmountMax;
-
+#pragma warning disable
     public HealthbarSystem(int healthAmount)
     {
         healthAmountMax = healthAmount;

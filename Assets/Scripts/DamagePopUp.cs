@@ -24,7 +24,7 @@ public class DamagePopUp : MonoBehaviour {
 
         DamagePopUp damagePopUp = damagePopUptransform.GetComponent<DamagePopUp>();
         damagePopUp.SetUp(-amount, false);
-        Debug.Log("MoneyPopUp");
+        //Debug.Log("MoneyPopUp");
         return damagePopUp;
     }
 

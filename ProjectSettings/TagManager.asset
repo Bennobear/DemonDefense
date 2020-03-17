@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Enemy
+  - Tower
+  - Button
   layers:
   - Default
   - TransparentFX

@@ -133,6 +133,7 @@ MonoBehaviour:
   attackSpeed: 1
   horror: 0
   turnSpeed: 0
+  type: Fireball
   target: {fileID: 0}
   canAttackFlying: 0
   canAttackInvisible: 0
@@ -140,6 +141,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4356336694101422542, guid: 25f3909140f6bf84f8bd4e3e29a74a4e,
     type: 3}
   firePoint: {fileID: 6154588278172742953}
+  infoText: {fileID: 0}
 --- !u!95 &91068477498615395
 Animator:
   serializedVersion: 3

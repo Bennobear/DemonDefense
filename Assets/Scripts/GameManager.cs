@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public GameObject pauseUI;
     public SceneFader fader;
+    private bool speedUp;
 
     void Start()
     {
@@ -40,8 +41,7 @@ public class GameManager : MonoBehaviour
     //Speedup for a set amount of time (IMPLEMENT TOGGLE HERE)
     public void Speedup()
     {
-        Time.timeScale = 5f;
-        StartCoroutine(Wait());
+        ToggleSpeed();
     }
     public void PauseGame()
     {
@@ -65,6 +65,19 @@ public class GameManager : MonoBehaviour
         if (pauseUI.activeSelf)
         {
             Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void ToggleSpeed()
+    {
+        speedUp = (!speedUp);
+        if (speedUp)
+        {
+            Time.timeScale = 5f;
         }
         else
         {
