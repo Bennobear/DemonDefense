@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //Class controlling the money and life of the player 
 
 public class PlayerStats : MonoBehaviour
 {
 	public Text lifeText;
 	public Text moneyText;
+	public Text levelText;
 	public Transform moneyPos;
 	public static int money;
 	public int startMoney = 400;
@@ -19,7 +21,7 @@ public class PlayerStats : MonoBehaviour
 	{
 		money = startMoney;
 		life = startLives;
-
+		levelText.text = SceneManager.GetActiveScene().name;
 		Rounds = 0;
 	}
 
