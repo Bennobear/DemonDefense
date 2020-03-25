@@ -12,7 +12,6 @@ public class TestOurTile : MonoBehaviour
     public Vector3 towerPos;
 
     private WorldTile _tile;
-    // TESTING
     public GameObject firstTower;
     public GameObject secondTower;
     public GameObject thirdTower;
@@ -30,7 +29,7 @@ public class TestOurTile : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
+    //This is our input logic - it handles our Mouse Input and checks wheter any UI Element is active and acts accordingly
     private void Update()
     {
         var tiles = GameTiles.instance.tiles;
@@ -135,7 +134,7 @@ public class TestOurTile : MonoBehaviour
     {
         _turret = selectedTower;
     }
-
+    //Unlocks the Tile again = set Blocked false
     public void DeleteTower(Tower tower)
     {
         var tiles = GameTiles.instance.tiles;
@@ -147,7 +146,7 @@ public class TestOurTile : MonoBehaviour
             //CALL POPUP to show it
         }
     }
-
+    //Instantiates the Tower prefab of the Tower we selected
     public void BuildTower()
     {
         Tower t = selectedTower.GetComponent<Tower>();
@@ -155,7 +154,7 @@ public class TestOurTile : MonoBehaviour
         {
             Instantiate(selectedTower, towerPos, Quaternion.identity);
             PlayerStats.money -= t.GetPrice();
-            DamagePopUp.CreateMoney(playerStats.moneyPos.position, t.GetPrice());
+            DamagePopUp.CreateMoney(new Vector3(playerStats.moneyPos.position.x - 1, playerStats.moneyPos.position.y - 1, playerStats.moneyPos.position.z), t.GetPrice());
             _tile.Blocked = true;
             StartCoroutine(Wait());
         }

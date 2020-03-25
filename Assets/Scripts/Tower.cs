@@ -28,10 +28,12 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     TestOurTile buildManager;
+    public PlayerStats playerStats;
 
     //Update target every .5 seconds and get our buildManager Singleton Instance 
     void Start()
     {
+        playerStats = GameObject.Find("GameManager").GetComponent<PlayerStats>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         buildManager = TestOurTile.instance;
     }
@@ -107,18 +109,37 @@ public class Tower : MonoBehaviour
     //Upgrade the range of a tower
     public void UpgradeRange()
     {
-        range += 0.5f;
-        ShowInfo();
+        if (PlayerStats.money >= 75) {
+            range += 0.5f;
+            ShowInfo();
+            PlayerStats.money -= 75;
+            DamagePopUp.CreateMoney(new Vector3(playerStats.moneyPos.position.x - 1, playerStats.moneyPos.position.y - 1, playerStats.moneyPos.position.z), 75);
+        }
+        else
+        {
+            //Trigger no money animation
+        }
     }
     //Upgrade the damage of a tower
     public void UpgradeDamage()
     {
-        damage += 5;
-        ShowInfo();
+        if (PlayerStats.money >= 50)
+        {
+            damage += 5;
+            ShowInfo();
+            PlayerStats.money -= 50;
+            DamagePopUp.CreateMoney(new Vector3(playerStats.moneyPos.position.x - 1, playerStats.moneyPos.position.y - 1 ,playerStats.moneyPos.position.z), 50);
+        }
+        else
+        {
+            //Trigger no money animation
+        }
+        
     }
     //Sell a tower 
     public void SellTower()
     {
+        PlayerStats.money += cost;
         Destroy(gameObject);
         buildManager.DeleteTower(this);
         UpgradeOverlay.Hide_Static();
@@ -141,7 +162,7 @@ public class Tower : MonoBehaviour
     {
         return cost;
     }
-
+    //Get Text for tooltip (Gravestone)
     public void ShowInfo()
     {
         string tooltip = string.Empty;
